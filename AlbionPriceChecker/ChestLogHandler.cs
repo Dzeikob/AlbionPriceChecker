@@ -21,6 +21,7 @@ namespace AlbionPriceChecker
             foreach (string line in chestLog)
             {
                 string[] regexMatch = Regex.Split(line, "\"(.*?)\"");
+                if (line.Trim() == "") continue;
                 var existingItem = chestItems.Find(x =>
                     x.Name == regexMatch[5] && x.Enchantment == Convert.ToInt16(regexMatch[7]));
                 if (existingItem != null)
