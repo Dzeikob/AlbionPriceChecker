@@ -22,6 +22,11 @@ namespace AlbionPriceChecker
             foreach (var item in chestItems)
             {
                 var metaItem = metaItems.Find(x => x.LocalizedNames != null && x.LocalizedNames[0].Value == item.Name);
+                if (metaItem == null)
+                {
+                    continue;
+                }
+
                 //Remove @ITEMS_ from localizationNameVariable
                 item.MetaName = metaItem.LocalizationNameVariable.Substring(7);
                 if (item.Enchantment > 0) item.MetaName += "@" + item.Enchantment;

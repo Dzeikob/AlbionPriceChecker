@@ -19,7 +19,14 @@ namespace AlbionPriceChecker
             var table = GetDataTable();
             foreach (var item in itemsWithPrices)
             {
-                table.Rows.Add(item.Name, item.Enchantment, item.SellPriceMin, item.Amount, item.SellPriceMin * item.Amount);
+                if (item.MetaName != null)
+                {
+                    table.Rows.Add(item.Name, item.Enchantment, item.MostAccuratePrice, item.MostAccurateCity.Name, item.Amount, item.MostAccuratePrice * item.Amount);
+                }
+                else
+                {
+                    table.Rows.Add(item.Name, item.Enchantment, 0, "N/A", item.Amount, 0);
+                }
             }
 
             var summaryTable = GetSummaryTable();
@@ -40,6 +47,7 @@ namespace AlbionPriceChecker
             table.Columns.Add("Item Name", typeof(string));
             table.Columns.Add("Enchantment", typeof(int));
             table.Columns.Add("Price per item", typeof(long));
+            table.Columns.Add("City", typeof(string));
             table.Columns.Add("Quanity", typeof(int));
             table.Columns.Add("Total price", typeof(long));
             
