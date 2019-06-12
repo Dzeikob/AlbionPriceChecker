@@ -7,8 +7,7 @@ namespace AlbionPriceChecker
     {
         static void Main(string[] args)
         {
-            try
-            {
+            
                 Console.WriteLine(
                     "HOW TO USE:\n" +
                     "----------------------------------\n" +
@@ -37,7 +36,7 @@ namespace AlbionPriceChecker
 
                 foreach (var item in itemsWithPrice)
                 {
-                    if (item.MetaName != null)
+                    if (item.MetaName != null && item.MostAccurateCity != null)
                     {
                         Console.WriteLine(
                             $"Item: {item.Name} | Price: {item.MostAccuratePrice} | City: {item.MostAccurateCity.Name} |  Amount: {item.Amount}");
@@ -52,11 +51,8 @@ namespace AlbionPriceChecker
                 Console.WriteLine("Exporting data to excel..");
                 Console.WriteLine("Data saved to: " + SaveData.SaveCityInfo(city, itemsWithPrice));
                 Console.WriteLine("Completed! Press any key to exit");
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex);
-            }
+            
+            
             Console.ReadKey();
         }
     }

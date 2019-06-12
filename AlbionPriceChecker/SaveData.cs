@@ -19,7 +19,7 @@ namespace AlbionPriceChecker
             var table = GetDataTable();
             foreach (var item in itemsWithPrices)
             {
-                if (item.MetaName != null)
+                if (item.MetaName != null && item.MostAccurateCity != null)
                 {
                     table.Rows.Add(item.Name, item.Enchantment, item.MostAccuratePrice, item.MostAccurateCity.Name, item.Amount, item.MostAccuratePrice * item.Amount);
                 }
